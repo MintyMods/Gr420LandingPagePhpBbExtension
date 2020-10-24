@@ -1,0 +1,43 @@
+imports:
+    - { resource: parameters.yml }
+
+services:
+    minty.homepage.controller.main:
+        class: minty\homepage\controller\main_controller
+        arguments:
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@language'
+            - '@dbal.conn'
+            - '@log'
+            - '%minty.homepage.tables.homepage%'            
+
+    minty.homepage.controller.acp:
+        class: minty\homepage\controller\acp_controller
+        arguments:
+            - '@config'
+            - '@language'
+            - '@log'
+            - '@request'
+            - '@template'
+            - '@user'
+
+    minty.homepage.service:
+        class: minty\homepage\service
+        arguments:
+            - '@user'
+            - '%minty.homepage.tables.homepage%'
+
+    minty.homepage.listener:
+        class: minty\homepage\event\main_listener
+        arguments:
+            - '@language'
+            - '@controller.helper'
+            - '@template'
+            - '%core.php_ext%'
+            - '@dbal.conn'
+            - '@log'
+            - '%minty.homepage.tables.homepage%'
+        tags:
+            - { name: event.listener }

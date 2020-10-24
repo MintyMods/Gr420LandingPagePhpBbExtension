@@ -1,0 +1,2 @@
+parameters:
+    minty.homepage.tables.homepage: '%core.table_prefix%minty_homepage'
