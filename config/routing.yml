@@ -1,3 +1,7 @@
 minty_homepage_controller:
     path: /homepage/{command}/{post_id}/{section}/{topic_id}/{forum_id}
-    defaults: { _controller: minty.homepage.controller.main:handle, command:"select", post_id:0, section:'none', topic_id:0, forum_id:0 }
+    defaults: { _controller: minty.homepage.controller.main:handle, command:"render", post_id:0, section:'none', topic_id:0, forum_id:0 }
+
+minty_homepage_controller_podcasts:
+    path: /podcast/{command}/{post_id}/{section}/{topic_id}/{forum_id}
+    defaults: { _controller: minty.homepage.controller.main:handle, command:"podcast", post_id:0, section:'none', topic_id:0, forum_id:0 }

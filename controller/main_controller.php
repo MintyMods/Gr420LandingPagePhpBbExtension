@@ -39,22 +39,20 @@ class main_controller {
 
 
 	public function handle($command, $post_id, $section, $topic_id, $forum_id) {
-
+		$json_response = new \phpbb\json_response();
+		$result = false;
 		switch ($command) {
 			case 'remove' :
-				$result = $this->deleteRecord($post_id);
-				$json_response = new \phpbb\json_response();
-				$json_response->send($result);
-				break;
+				return $json_response->send($this->deleteRecord($post_id));
 			case 'add' :
-				$result = $this->addRecord($post_id, $section, $topic_id, $forum_id);
-				$json_response = new \phpbb\json_response();
-				$json_response->send($result);				
-				break;
+				return $json_response->send($this->addRecord($post_id, $section, $topic_id, $forum_id));
+			case 'render' :
+				$this->template->assign_var('HOMEPAGE_RESULT', 'render me');
+				return $this->helper->render('@minty_homepage/homepage_body.html', $result);
+			case 'podcast' :
+				$this->template->assign_var('HOMEPAGE_RESULT', 'PodCast');
+				return $this->helper->render('@minty_homepage/homepage_body.html', $result);
 		}
-
-		$this->template->assign_var('HOMEPAGE_RESULT', $result);
-		return $this->helper->render('@minty_homepage/homepage_body.html', $result);
 	}
 	
 	public function deleteRecord($post_id) {
