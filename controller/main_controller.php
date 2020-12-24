@@ -47,11 +47,27 @@ class main_controller {
 			case 'add' :
 				return $json_response->send($this->addRecord($post_id, $section, $topic_id, $forum_id));
 			case 'render' :
-				$this->template->assign_var('HOMEPAGE_RESULT', 'render me');
-				return $this->helper->render('@minty_homepage/homepage_body.html', $result);
-			case 'podcast' :
-				$this->template->assign_var('HOMEPAGE_RESULT', 'PodCast');
-				return $this->helper->render('@minty_homepage/homepage_body.html', $result);
+			case 'homepage' :
+				$this->template->assign_var('HOMEPAGE_RESULT', 'homepage render me');
+				return $this->helper->render('@minty_homepage/homepage.html', $result);
+			case 'podcasts' :
+				$this->template->assign_var('HOMEPAGE_RESULT', 'PodCasts');
+				return $this->helper->render('@minty_homepage/podcasts.html', $result);
+			case 'tutorials' :
+				$this->template->assign_var('HOMEPAGE_RESULT', 'Tutorials');
+				return $this->helper->render('@minty_homepage/tutorials.html', $result);
+			case 'links' :
+				$this->template->assign_var('HOMEPAGE_RESULT', 'Links');
+				return $this->helper->render('@minty_homepage/links.html', $result);
+			case 'comps' :
+				$this->template->assign_var('HOMEPAGE_RESULT', 'Competitions');
+				return $this->helper->render('@minty_homepage/comps.html', $result);
+			case 'reviews' :
+				$this->template->assign_var('HOMEPAGE_RESULT', 'Reviews');
+				return $this->helper->render('@minty_homepage/reviews.html', $result);
+			case 'diaries' :
+				$this->template->assign_var('HOMEPAGE_RESULT', 'Diaries');
+				return $this->helper->render('@minty_homepage/diaries.html', $result);
 		}
 	}
 	
