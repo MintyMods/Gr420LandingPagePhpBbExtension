@@ -18,7 +18,8 @@ var background_images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg5.jpg', 
 			});
 		});
 		$(".postimage").each(function(){
-			$(this).addClass('image main');
+			$(this).wrap("<a href='#' class='image main'></a>");
+			//$(this).addClass('image main');
 		});
 
 	})
