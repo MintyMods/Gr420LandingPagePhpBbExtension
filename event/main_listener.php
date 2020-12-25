@@ -57,6 +57,10 @@ class main_listener implements EventSubscriberInterface
 		$this->table_name = $table_name;
 	}
 
+	public function viewonline_page() {
+		// NOOP - required to remove error from WHO IS ONLINE
+	}
+
 	public function load_language_on_setup($event) {
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = array(
