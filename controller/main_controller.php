@@ -108,10 +108,6 @@ class main_controller {
 			include_once($this->phpbb_root_path . 'includes/bbcode' . $this->php_ext);
 		}
 
-		// if (!function_exists('display_custom_bbcodes'))	{
-			//include_once($this->root_path . 'includes/functions_display' . $this->php_ext);
-		// }
-		
 		$posts_ary = array(
 			'SELECT'    => 'p.*',
 			'FROM'      => array(

@@ -4,18 +4,24 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+var background_images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg5.jpg', 'bg6.jpg'];
+
 (function($) {
 
-
-	// Load common code into placeholders
 	$(function(){
+		// Randomise Background image
+		$('#wrapper > .bg').css({'background-image':"url('../ext/minty/homepage/assests/images/overlay.png'), linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../ext/minty/homepage/assests/images/bg/" + background_images[Math.floor(Math.random() * background_images.length)] + "')"});
+
 		$("[data-load]").each(function(){
 			$(this).load('../ext/minty/homepage/common/' + $(this).data("load"), function(){
 				console.log("loaded " + this);
 			});
 		});
-	})
+		$(".postimage").each(function(){
+			$(this).addClass('image main');
+		});
 
+	})
 
 	var	$window = $(window),
 		$body = $('body'),
@@ -25,7 +31,6 @@
 		$main = $('#main'),
 		$navPanelToggle, $navPanel, $navPanelInner;
 
-	// Breakpoints.
 		breakpoints({
 			default:   ['1681px',   null       ],
 			xlarge:    ['1281px',   '1680px'   ],
@@ -36,10 +41,6 @@
 			xxsmall:   [null,       '360px'    ]
 		});
 
-	/**
-	 * Applies parallax scrolling to an element's background image.
-	 * @return {jQuery} jQuery object.
-	 */
 	$.fn._parallax = function(intensity) {
 
 		var	$window = $(window),
@@ -49,12 +50,10 @@
 			return $this;
 
 		if (this.length > 1) {
-
 			for (var i=0; i < this.length; i++)
 				$(this[i])._parallax(intensity);
 
 			return $this;
-
 		}
 
 		if (!intensity)
@@ -68,30 +67,17 @@
 
 			on = function() {
 
-				$bg
-					.removeClass('fixed')
-					.css('transform', 'matrix(1,0,0,1,0,0)');
-
+				$bg.removeClass('fixed').css('transform', 'matrix(1,0,0,1,0,0)');
 				$window
 					.on('scroll._parallax', function() {
-
 						var pos = parseInt($window.scrollTop()) - parseInt($t.position().top);
-
 						$bg.css('transform', 'matrix(1,0,0,1,0,' + (pos * intensity) + ')');
-
 					});
-
 			};
 
 			off = function() {
-
-				$bg
-					.addClass('fixed')
-					.css('transform', 'none');
-
-				$window
-					.off('scroll._parallax');
-
+				$bg.addClass('fixed').css('transform', 'none');
+				$window.off('scroll._parallax');
 			};
 
 			// Disable parallax on ..
@@ -100,15 +86,11 @@
 				||	window.devicePixelRatio > 1		// Retina/HiDPI (= poor performance)
 				||	browser.mobile)					// Mobile devices
 					off();
-
 			// Enable everywhere else.
 				else {
-
 					breakpoints.on('>large', on);
 					breakpoints.on('<=large', off);
-
 				}
-
 		});
 
 		$window
@@ -121,19 +103,15 @@
 
 	};
 
-	// Play initial animations on page load.
 		$window.on('load', function() {
 			window.setTimeout(function() {
 				$body.removeClass('is-preload');
 			}, 100);
 		});
 
-	// Scrolly.
 		$('.scrolly').scrolly();
-	// Background.
-	//var images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg5.jpg', 'bg6.jpg'];
-	//$wrapper.get(0).css({'background-image': 'url(/images/bg/' + images[Math.floor(Math.random() * images.length)] + ')'});
-	// $('#wrapper > .bg').css('background-image','url(../../images/bg/bg2.jpg');
+
+		
 
 	$wrapper._parallax(0.925);
 
