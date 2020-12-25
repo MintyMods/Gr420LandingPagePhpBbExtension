@@ -75,19 +75,19 @@ class main_listener implements EventSubscriberInterface
 	public function viewtopic_modify_postrow($event) {
 		$row = $event['row'];
 		$postrow = $event['post_row'];
-		$topic_data = $event['topic_data'];
 		$forum_id = (int) $row['forum_id'];
 		$poster_id = (int) $row['user_id'];
-		$this->output_homepage($poster_id, $postrow, $row, $topic_data, $forum_id);
+		$topic_id = (int) $row['topic_id'];
+		$this->output_homepage($poster_id, $postrow, $row, $topic_id, $forum_id);
 		$event['post_row'] = $postrow;
 	}
 
-	public function output_homepage($poster_id, &$postrow, $row, $topic_data, $forum_id) 	{
+	public function output_homepage($poster_id, &$postrow, $row, $topic_id, $forum_id) 	{
 		if (!empty($postrow)) {
 			$status = $this->get_homepage_status($row['post_id']);
 			$postrow = array_merge($postrow, $status, array(
 				'HOMEPAGE_FORUM_ID' => $forum_id,
-				'HOMEPAGE_TOPIC_DATE' => $topic_data,
+				'HOMEPAGE_TOPIC_ID' => $topic_id,
 			));
 		}
 	}

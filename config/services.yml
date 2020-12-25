@@ -11,7 +11,9 @@ services:
             - '@language'
             - '@dbal.conn'
             - '@log'
-            - '%minty.homepage.tables.homepage%'            
+            - '%minty.homepage.tables.homepage%' 
+            - '%core.root_path%'
+            - .%core.php_ext%           
 
     minty.homepage.controller.acp:
         class: minty\homepage\controller\acp_controller

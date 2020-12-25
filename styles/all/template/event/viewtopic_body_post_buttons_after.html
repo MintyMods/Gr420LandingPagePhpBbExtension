@@ -9,14 +9,14 @@
 		<div class="dropdown-contents">
 			<fieldset class="display-options">
 				<label for="sk">Homepage Section{L_COLON}<hr class="dashed">
-					<select name="homepage-section" id="homepage-section-{{ postrow.POST_ID }}" onchange="javascript:processHomepagePost('{{ postrow.POST_ID }}','{{ postrow.HOMEPAGE_STATUS }}')">
+					<select name="homepage-section" id="homepage-section-{{ postrow.POST_ID }}" onchange="javascript:processHomepagePost('{{ postrow.POST_ID }}','{{ postrow.HOMEPAGE_STATUS }}','{{ postrow.HOMEPAGE_TOPIC_ID }}','{{ postrow.HOMEPAGE_FORUM_ID }}'   )">
 						<option {% if postrow.HOMEPAGE_STATUS == 'none' %}selected{% endif %} value="none">None</option>
 						<option {% if postrow.HOMEPAGE_STATUS == 'homepage' %}selected{% endif %} value="homepage">Main Content </option>
 						<option {% if postrow.HOMEPAGE_STATUS == 'tutorials' %}selected{% endif %} value="tutorials">Tutorials</option>
 						<option {% if postrow.HOMEPAGE_STATUS == 'podcasts' %}selected{% endif %} value="podcasts">Pod Casts</option>
 						<option {% if postrow.HOMEPAGE_STATUS == 'diaries' %}selected{% endif %} value="diaries">Grow Diaries</option>
 						<option {% if postrow.HOMEPAGE_STATUS == 'reviews' %}selected{% endif %} value="reviews">Reviews</option>
-						<option {% if postrow.HOMEPAGE_STATUS == 'sponsors' %}selected{% endif %} value="sponsors">Sponsors</option>
+						<option {% if postrow.HOMEPAGE_STATUS == 'links' %}selected{% endif %} value="links">Links</option>
 					</select>
 				</label>
 			</fieldset>

@@ -2,74 +2,64 @@
 <html>
 	<head data-load="head.html"/>
 	<body class="is-preload">
-			<div id="wrapper" class="fade-in">
-				<div id="intro" data-load="intro.html"></div>
-				<header id="header" data-load="banner.html"></header>
-				<nav id="nav" data-load="navigation.html"></nav>
-				<div id="main">
-<!-- ########## MAIN BODY CONTENT FOLLOWS ############## -->
-
-
-   <!-- IF ( U_ACP or U_MCP ) -->
-   <h2>ACP OR MCP PRIVELEDGES DETECTED¬!!!</h2>
-   <!-- ENDIF -->
-
-
-   <h2>{{ HOMEPAGE_RESULT }}</h2>
-
-		<!-- Featured Post -->
-		<article class="post featured">
-			<header class="major">
-				<span class="date">August 18th, 2020</span>
-				<h2><a href="#">Growroom420 is a cannabis growing community run by growers for growers</a></h2>
-				<p>We are here to provide a safe environment for growers and weed lovers to share information, learn to grow cannabis, fix issues and deficiencies, follow grow diaries and much more.</p>
-				<p>The sole purpose of our cannabis growers community is to share information and learn from each other.</p>
-			</header>
-			<a href="#" class="image main"><img src="images/mission.jpg" alt="" /></a>
-			<ul class="actions special">
-				<li><a href="#" class="button large">Full Story</a></li>
-			</ul>
-		</article>
-
-		<!-- Posts -->
-		<section class="posts">
-			<article>
-				<header>
-					<span class="date">Sat Jan 04, 2020 11:26 am</span>
-					<h2><a href="#">Grow Diary<br />
-						Nanook</a></h2>
-				</header>
-				<a href="#" class="image fit"><img src="diaries/one/image.jpg" alt="" /></a>
-				<p>I decided to try a commercial technique to see if more plants, makes more yield in the same area.... cut to the chase, no, it didnt. It saves maybe a week at most and was more agro than it was worth. I will never be trying this experiment ever ever again!
-					Second part of this test was to see if Dinafem BC was as good a producer as Exo luton cut. The result was Dina BC dwarfed the exo and was more frosty. It is also more of a head high imho, but I did cut at 8.5 weeks flower.
-					Exo was clones from flowering plant, BC was all seeds. There were 2 obvious phenos - one was tall and fat with few stems, other was tall and skinny with many.
-					Final result was 66 zips + a load of popcorn.</p>
-				<ul class="actions special">
-					<li><a href="https://www.growroom420.com/viewtopic.php?f=112&t=4797" class="button">Full Story</a></li>
-				</ul>
-			</article>
-			<article>
-				<header>
-					<span class="date">Wed Jan 08, 2020 5:03 pm</span>
-					<h2><a href="#">Grow Diary<br />
-					Bulls</a></h2>
-				</header>
-				<a href="#" class="image fit"><img src="diaries/two/image.jpg" alt="" /></a>
-				<p>Good Morning everyone. That has been one of the best grows I've done and enjoyed every minute of it. This girl went down last night at 9 and a half weeks.. I will let the photos do the talking... thanks to everyone who shared this journey with me!</p>
-				<ul class="actions special">
-					<li><a href="#" class="button">Full Story</a></li>
-				</ul>
-			</article>
-
-			</section>
-			<footer data-load="pagination.html"></footer>
-
-<!-- ########## END MAIN BODY CONTENT FOLLOWS ############## -->
+		<div id="wrapper" class="fade-in">
+			<div id="intro" data-load="intro.html"></div>
+			<header id="header" data-load="banner.html"></header>
+			<nav id="nav" data-load="navigation.html"></nav>
+			<div id="main">
+	
+			<!-- Featured Post -->
+			{% for ITEM in HOMEPAGE_POSTS %}
+				<!-- IF ITEM.S_ROW_COUNT == 0 -->
+				<article class="post featured">
+					<header class="major">
+						<span class="date">{{ ITEM.POST_DATE }}</span>
+						<h2>{{ ITEM.TOPIC_TITLE }}</h2>
+						<p>{{ ITEM.POST_TEXT }}</p>
+					</header>
+					<!--a href="#" class="image main"><img src="images/mission.jpg" alt="" /></a-->
+					<ul class="actions special">
+						<li><a href="./{{ ITEM.POST_LINK }}" class="button large"><i class="fas fa-cannabis" aria-hidden="true"></i> Full Diary</a></li>
+					</ul>
+				</article>
+				<!-- ENDIF -->
+			{% else %}
+				<div class="panel">
+					<div class="inner">
+						<strong>There are currently no published diary items</strong>
+					</div>
 				</div>
-				<footer id="footer" data-load="footer.html"></footer>
-				<div id="copyright"  data-load="copyright.html"></div>
-         </div>
-      <script src="../ext/minty/homepage/common/minty.script.loader.js"></script>
+			{% endfor %}
+				
+			<!-- Remaining Posts -->
+			<section class="posts">
+				{% for ITEM in HOMEPAGE_POSTS %}
+					<!-- IF ITEM.S_ROW_COUNT > 0 -->
+					<article class="post featured">
+						<header>
+							<span class="date">{{ ITEM.POST_DATE }}</span>
+							<h2>{{ ITEM.TOPIC_TITLE }}</h2>
+							<p>{{ ITEM.POST_TEXT }}</p>
+						</header>
+						<!--a href="#" class="image main"><img src="images/mission.jpg" alt="" /></a-->
+						<ul class="actions special">
+							<li><a href="{{ ITEM.POST_LINK }}" class="button large"><i class="fas fa-cannabis" aria-hidden="true"></i> Full Diary</a></li>
+						</ul>
+					</article>
+					<!-- ENDIF -->
+				{% endfor %}
+			</section>
+
+			<!--footer data-load="pagination.html"></footer-->
+			</div>
+			<footer id="footer" data-load="footer.html"></footer>
+			<div id="copyright"  data-load="copyright.html"></div>
+		</div>
+		 
+	<!-- IF ( U_ACP or U_MCP ) -->
+	<!--div>ACP OR MCP PRIVELEDGES DETECTED¬!!!</div-->
+	<!-- ENDIF -->
+    <script src="../ext/minty/homepage/common/minty.script.loader.js"></script>
 </body>
 </html>
 

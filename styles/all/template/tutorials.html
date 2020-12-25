@@ -1,23 +1,67 @@
 <!DOCTYPE HTML>
 <html>
-	<head data-load="head.html">
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
+	<head data-load="head.html"/>
 	<body class="is-preload">
-			<div id="wrapper" class="fade-in">
-				<div id="intro" data-load="intro.html"></div>
-				<header id="header" data-load="banner.html"></header>
-				<nav id="nav" data-load="navigation.html"></nav>
-				<div id="main">
-<!-- ########## MAIN BODY CONTENT FOLLOWS ############## -->
-
-<h2>{{ HOMEPAGE_RESULT }}</h2>
-
-<!-- ########## END MAIN BODY CONTENT FOLLOWS ############## -->
+		<div id="wrapper" class="fade-in">
+			<div id="intro" data-load="intro.html"></div>
+			<header id="header" data-load="banner.html"></header>
+			<nav id="nav" data-load="navigation.html"></nav>
+			<div id="main">
+	
+			<!-- Featured Post -->
+			{% for ITEM in HOMEPAGE_POSTS %}
+				<!-- IF ITEM.S_ROW_COUNT == 0 -->
+				<article class="post featured">
+					<header class="major">
+						<span class="date">{{ ITEM.POST_DATE }}</span>
+						<h2>{{ ITEM.TOPIC_TITLE }}</h2>
+						<p>{{ ITEM.POST_TEXT }}</p>
+					</header>
+					<!--a href="#" class="image main"><img src="images/mission.jpg" alt="" /></a-->
+					<ul class="actions special">
+						<li><a href="./{{ ITEM.POST_LINK }}" class="button large"><i class="fas fa-user-graduate" aria-hidden="true"></i> Learn More</a></li>
+					</ul>
+				</article>
+				<!-- ENDIF -->
+			{% else %}
+				<div class="panel">
+					<div class="inner">
+						<strong>There are currently no published tutorials items</strong>
+					</div>
 				</div>
-				<footer id="footer" data-load="footer.html"></footer>
-				<div id="copyright"  data-load="copyright.html"></div>
+			{% endfor %}
+				
+			<!-- Remaining Posts -->
+			<section class="posts">
+				{% for ITEM in HOMEPAGE_POSTS %}
+					<!-- IF ITEM.S_ROW_COUNT > 0 -->
+					<article class="post featured">
+						<header>
+							<span class="date">{{ ITEM.POST_DATE }}</span>
+							<h2>{{ ITEM.TOPIC_TITLE }}</h2>
+							<p>{{ ITEM.POST_TEXT }}</p>
+						</header>
+						<!--a href="#" class="image main"><img src="images/mission.jpg" alt="" /></a-->
+						<ul class="actions special">
+							<li><a href="{{ ITEM.POST_LINK }}" class="button large"><i class="fas fa-user-graduate" aria-hidden="true"></i> Learn More</a></li>
+						</ul>
+					</article>
+					<!-- ENDIF -->
+				{% endfor %}
+			</section>
+
+			<!--footer data-load="pagination.html"></footer-->
 			</div>
-			<script src="../ext/minty/homepage/common/minty.script.loader.js"></script>
-	</body>
+			<footer id="footer" data-load="footer.html"></footer>
+			<div id="copyright"  data-load="copyright.html"></div>
+		</div>
+		 
+	<!-- IF ( U_ACP or U_MCP ) -->
+	<!--div>ACP OR MCP PRIVELEDGES DETECTED¬!!!</div-->
+	<!-- ENDIF -->
+    <script src="../ext/minty/homepage/common/minty.script.loader.js"></script>
+</body>
 </html>
+
+
+

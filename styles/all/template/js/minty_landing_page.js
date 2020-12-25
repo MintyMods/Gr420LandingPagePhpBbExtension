@@ -1,24 +1,24 @@
 
-function processHomepagePost(id, current) {
+function processHomepagePost(id, current, forum_id, topic_id) {
     var selection = $('#homepage-section-' + id + " option:selected");
     var section = selection.val();
     var desc = selection.text();
     
     if (section == 'none') {
-        removePostFromLandingPageContent(id, section, desc, current);
+        removePostFromLandingPageContent(id, section, desc, current, forum_id, topic_id);
     } else {
-        addPostToLandingPageContent(id, section, desc, current);
+        addPostToLandingPageContent(id, section, desc, current, forum_id, topic_id);
     }
 }
 
-function addPostToLandingPageContent(id, section, desc, current) {
+function addPostToLandingPageContent(id, section, desc, current, topic_id, forum_id) {
     dhtmlx.confirm({
         title: "Add to Homepage?",
         type:"confirm-warning",
         text: "Add Post to Homepage " + desc + " Content?",
         callback: function(confirmed) {
             if (confirmed) {
-                const url = 'homepage/add/' + id + '/' + section;                
+                const url = 'homepage/add/' + id + '/' + section + '/' + topic_id + '/' + forum_id;                
                 $.ajax({ url, cache: false }).done(function(result, status, jqXHR) {
                     if (result) {
                         showMessage("Post " + id + " added to Homepage " + desc, "Homepage Updated ", section);
@@ -36,7 +36,7 @@ function addPostToLandingPageContent(id, section, desc, current) {
     });
 }
 
-function removePostFromLandingPageContent(id, section, desc, current) {
+function removePostFromLandingPageContent(id, section, desc, current, forum_id, topic_id) {
     dhtmlx.confirm({
         title: "Remove from Homepage?",
         type:"confirm",
