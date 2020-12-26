@@ -20,6 +20,12 @@
 							<li><a href="{{ ITEM.POST_LINK }}" class="button large"><i class="fas fa-user-check" aria-hidden="true"></i> Full Review</a></li>
 						</ul>
 					</article>
+				{% else %}
+					<div class="panel">
+						<div class="inner">
+							<strong>There are currently no published reviews</strong>
+						</div>
+					</div>
 				{% endfor %}
 			</section>
 
