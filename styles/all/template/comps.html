@@ -1,51 +1,30 @@
 <!DOCTYPE HTML>
 <html>
-	<head data-load="head.html"/>
 
-		<title>GrowRoom420.com - Learn how to grow perfect cannabis, diagnose cannabis deficiencies and environmental issues.</title>
-		<meta charset="utf-8" />
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-		<link rel="stylesheet" href="assets/dhtmlx/dhtmlxscheduler.css" type="text/css" charset="utf-8">
-		<link rel="stylesheet" href="assets/dhtmlx/dhtmlxscheduler_material.css" type="text/css" charset="utf-8">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-	</head>
-	<body class="is-preload">
-			<div id="wrapper" class="fade-in">
-				<div id="intro" data-load="intro.html"></div>
-				<header id="header" data-load="banner.html"></header>
-				<nav id="nav" data-load="navigation.html"></nav>
-				<div id="main" >
-<!-- ########## MAIN BODY CONTENT FOLLOWS ############## -->
-<div style='width:100%; height:850px;'>
-<div id="compitition_scheduler" style='width:100%; height:100%;'></div>
-	<div class="add_event_button" data-tooltip="Create new event"><span></span></div>
-</div>
-</div>
+<head>
+	{% include '@minty_homepage/common/head.html' %}
+	<link rel="stylesheet" href="../ext/minty/homepage/styles/all/template/dhtmlx/dhtmlxscheduler.css" type="text/css" charset="utf-8">
+	<link rel="stylesheet" href="../ext/minty/homepage/styles/all/template/dhtmlx/dhtmlxscheduler_material.css" type="text/css" charset="utf-8"> 
+</head>
 
-
-<!-- ########## END MAIN BODY CONTENT FOLLOWS ############## -->
-				</div>
-				<footer id="footer" data-load="footer.html"></footer>
-				<div id="copyright"  data-load="copyright.html"></div>
+<body class="is-preload">
+	<div id="wrapper" class="fade-in">
+		<div id="intro">{% include '@minty_homepage/common/intro.html' %}</div>
+		<header id="header">{% include '@minty_homepage/common/banner.html' %}</header>
+		<nav id="nav">{% include '@minty_homepage/common/navigation.html' %}</nav>
+	</div>
+	<div id="main">
+		<div style='width:100%; height:850px;'>
+			<div id="compitition_scheduler" style='width:100%; height:100%;'>
 			</div>
+		</div>
+	</div>
+	<footer id="footer">{% include '@minty_homepage/common/footer.html' %}</footer>
+	<div id="copyright"">{% include '@minty_homepage/common/copyright.html' %}</div>
+	</div>
+	<div id="navPanel">{% include '@minty_homepage/common/navigation_panel.html' %}</div>
+	<script src="../ext/minty/homepage/init/minty.script.loader.js"></script>
+	<script src="../ext/minty/homepage/init/minty.scheduler.script.loader.js"></script>
+</body>
 
-
-			<script src="../ext/minty/homepage/common/minty.script.loader.js"></script>
-			<!-- Scheduler 
-			<script src="./assets/js/scheduler.js"></script>
-			<script src="./assets/dhtmlx/dhtmlxscheduler.js" charset="utf-8"></script>
-			<script src="./assets/dhtmlx/ext/dhtmlxscheduler_year_view.js" charset="utf-8"></script>
-			<script src="./assets/dhtmlx/ext/dhtmlxscheduler_minical.js.js" charset="utf-8"></script>
-			<script src="./assets/dhtmlx/ext/dhtmlxscheduler_recurring.js" charset="utf-8"></script>
-			<script src="./assets/dhtmlx/ext/dhtmlxscheduler_quick_info.js" charset="utf-8"></script>
-
-			script src="./assets/dhtmlx/ext/dhtmlxscheduler_multiselect.js" charset="utf-8"></script>	
-			<script src="./assets/dhtmlx/ext/dhtmlxscheduler_editors.js" charset="utf-8"></script-->
-			
-			
-
-	</body>
 </html>

@@ -1,46 +1,43 @@
 <!DOCTYPE HTML>
 <html>
-	<head data-load="head.html"/>
-	<body class="is-preload">
-		<div id="wrapper" class="fade-in">
-			<div id="intro" data-load="intro.html"></div>
-			<header id="header" data-load="banner.html"></header>
-			<nav id="nav" data-load="navigation.html"></nav>
-			<div id="main">
+
+<head>{% include '@minty_homepage/common/head.html' %}</head>
+
+<body class="is-preload">
+	<div id="wrapper" class="fade-in">
+		<div id="intro">{% include '@minty_homepage/common/intro.html' %}</div>
+		<header id="header">{% include '@minty_homepage/common/banner.html' %}</header>
+		<nav id="nav">{% include '@minty_homepage/common/navigation.html' %}</nav>
+		<div id="main">
 			<section class="posts">
 				{% for ITEM in HOMEPAGE_POSTS %}
-					<article class="post featured">
-						<header>
-							<span class="date">{{ ITEM.POST_DATE }}</span>
-							<h2>{{ ITEM.TOPIC_TITLE }}</h2>
-							<p>{{ ITEM.POST_TEXT }}</p>
-						</header>
-						<!--a href="#" class="image main"><img src="images/mission.jpg" alt="" /></a-->
-						<ul class="actions special">
-							<li><a href="{{ ITEM.POST_LINK }}" class="button large"><i class="fas fa-user-check" aria-hidden="true"></i> Full Review</a></li>
-						</ul>
-					</article>
+				<article class="post featured">
+					<header>
+						<span class="date">{{ ITEM.POST_DATE }}</span>
+						<h2>{{ ITEM.TOPIC_TITLE }}</h2>
+						<p>{{ ITEM.POST_TEXT }}</p>
+					</header>
+					<!--a href="#" class="image main"><img src="images/mission.jpg" alt="" /></a-->
+					<ul class="actions special">
+						<li><a href="{{ ITEM.POST_LINK }}" class="button large"><i class="fas fa-user-check"
+									aria-hidden="true"></i> Full Review</a></li>
+					</ul>
+				</article>
 				{% else %}
-					<div class="panel">
-						<div class="inner">
-							<strong>There are currently no published reviews</strong>
-						</div>
+				<div class="panel">
+					<div class="inner">
+						<strong>There are currently no published reviews</strong>
 					</div>
+				</div>
 				{% endfor %}
 			</section>
 
-			<!--footer data-load="pagination.html"></footer-->
-			</div>
-			<footer id="footer" data-load="footer.html"></footer>
-			<div id="copyright"  data-load="copyright.html"></div>
 		</div>
-		 
-	<!-- IF ( U_ACP or U_MCP ) -->
-	<!--div>ACP OR MCP PRIVELEDGES DETECTED¬!!!</div-->
-	<!-- ENDIF -->
-    <script src="../ext/minty/homepage/common/minty.script.loader.js"></script>
+		<footer id="footer">{% include '@minty_homepage/common/footer.html' %}</footer>
+		<div id="copyright">{% include '@minty_homepage/common/copyright.html' %}</div>
+	</div>
+	<div id="navPanel">{% include '@minty_homepage/common/navigation_panel.html' %}</div>
+	<script src="../ext/minty/homepage/init/minty.script.loader.js"></script>
 </body>
+
 </html>
-
-
-

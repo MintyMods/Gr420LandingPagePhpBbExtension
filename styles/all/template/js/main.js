@@ -3,17 +3,14 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-
-var background_images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg5.jpg', 'bg6.jpg'];
-
 (function ($) {
 
 	$(function () {
 		// Randomise Background image
-		$('#wrapper > .bg').css({ 'background-image': "url('../ext/minty/homepage/assests/images/overlay.png'), linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../ext/minty/homepage/assests/images/bg/" + background_images[Math.floor(Math.random() * background_images.length)] + "')" });
+		$('#wrapper > .bg').css({ 'background-image': "url(" + APP_ROOT + "'/images/overlay.png'), linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(" + APP_ROOT + "'/images/bg/" + BACKGROUND_IMAGES[Math.floor(Math.random() * BACKGROUND_IMAGES.length)] + "')" });
 
 		$("[data-load]").each(function () {
-			$(this).load('../ext/minty/homepage/common/' + $(this).data("load"), function () {
+			$(this).load(APP_ROOT + 'common/' + $(this).data("load"), function () {
 				console.log("content loaded " + this);
 			});
 		});
@@ -137,48 +134,31 @@ var background_images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg5.jpg', 
 	});
 
 	// Panel.
-	$navPanel = $('<div id="navPanel"></div>').appendTo($body)
-		.panel({
-			delay: 500,
-			hideOnClick: true,
-			hideOnSwipe: true,
-			resetScroll: true,
-			resetForms: true,
-			side: 'right',
-			target: $body,
-			visibleClass: 'is-navPanel-visible'
-		});
-		$('#navPanel').load('../ext/minty/homepage/common/navigation_panel.html', function () {
-			console.log("nav Panel loaded " + this);
-		});
+	$navPanel = $('#navPanel').panel({
+		delay: 500,
+		hideOnClick: true,
+		hideOnSwipe: true,
+		resetScroll: true,
+		resetForms: true,
+		side: 'right',
+		target: $body,
+		visibleClass: 'is-navPanel-visible'
+	});
 
-		
 	// Get inner.
 	$navPanelInner = $navPanel.children('nav');
-
-	// Move nav content on breakpoint change.
 	var $navContent = $nav.children();
 
 	breakpoints.on('>medium', function () {
-
-		// NavPanel -> Nav.
 		$navContent.appendTo($nav);
-
-		// Flip icon classes.
 		$nav.find('.icons, .icon')
 			.removeClass('alt');
-
 	});
 
 	breakpoints.on('<=medium', function () {
-
-		// Nav -> NavPanel.
-		$navContent.appendTo($navPanelInner);
-
-		// Flip icon classes.
+		$navContent.prependTo($navPanelInner);
 		$navPanelInner.find('.icons, .icon')
 			.addClass('alt');
-
 	});
 
 	// Hack: Disable transitions on WP.
@@ -187,7 +167,6 @@ var background_images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg5.jpg', 
 		$navPanel
 			.css('transition', 'none');
 
-	// Intro.
 	var $intro = $('#intro');
 
 	if ($intro.length > 0) {

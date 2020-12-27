@@ -48,6 +48,9 @@ class main_controller {
 		$json_response = new \phpbb\json_response();
 		$result = false;
 		$search_limit = 5;
+		$this->template->assign_vars(array(
+			'HOMEPAGE_SECTION'	=> $section,
+		));
 		switch ($command) {
 			case 'remove' :
 				return $json_response->send($this->deleteRecord($post_id));
@@ -66,7 +69,7 @@ class main_controller {
 			case 'links' :
 				$this->selectPostForSection($post_id, $section, $topic_id, $forum_id);
 				return $this->helper->render('@minty_homepage/links.html', $result);
-			case 'comps' :
+			case 'compititions' :
 				$this->selectPostForSection($post_id, $section, $topic_id, $forum_id);
 				return $this->helper->render('@minty_homepage/comps.html', $result);
 			case 'reviews' :
@@ -136,7 +139,9 @@ class main_controller {
 			$post_date = $user->format_date($posts_row['post_time']);
 			$post_link = append_sid($this->phpbb_root_path . "viewtopic" . $this->php_ext, 'f=' . $posts_row['forum_id'] . '&amp;t=' . $posts_row['topic_id'] . '&amp;p=' . $posts_row['post_id']) . '#p' . $posts_row['post_id'];
 			$post_text = generate_text_for_display( $posts_row[ 'post_text' ], $posts_row[ 'bbcode_uid' ], $posts_row[ 'bbcode_bitfield' ], 7 );
-	
+
+		
+
 			$this->template->assign_block_vars('HOMEPAGE_POSTS', array(
 			 'TOPIC_TITLE'       => censor_text($topic_title),
 			 'POST_AUTHOR'       => $post_author,

@@ -22,6 +22,6 @@ minty_homepage_controller_links:
     path: /links/{command}/{post_id}/{section}/{topic_id}/{forum_id}
     defaults: { _controller: minty.homepage.controller.main:handle, command:"links", post_id:0, section:'links', topic_id:0, forum_id:0 }
 
-minty_homepage_controller_comps:
-    path: /comps/{command}/{post_id}/{section}/{topic_id}/{forum_id}
-    defaults: { _controller: minty.homepage.controller.main:handle, command:"comps", post_id:0, section:'comps', topic_id:0, forum_id:0 }
+minty_homepage_controller_compititions:
+    path: /compititions/{command}/{post_id}/{section}/{topic_id}/{forum_id}
+    defaults: { _controller: minty.homepage.controller.main:handle, command:"compititions", post_id:0, section:'compititions', topic_id:0, forum_id:0 }
