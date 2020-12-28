@@ -74,19 +74,14 @@ function resetConfig() {
     scheduler.utils.mixin(scheduler.xy, settings.xy, true);
     return true;
 }
-
-scheduler.config.responsive_lightbox = true;
-scheduler.config.multi_day = true;
-scheduler.config.prevent_cache = true;
+scheduler.config.container_autoresize = true;
+scheduler.config.readonly = true;
 scheduler.locale.labels.timeline_tab = "Schedule";
 scheduler.locale.labels.unit_tab = "Events";
-scheduler.locale.labels.week_agenda_tab = "Agenda";
-scheduler.config.details_on_create = true;
-scheduler.config.details_on_dblclick = true;
 scheduler.config.date_format = "%Y-%m-%d %H:%i";
 scheduler.attachEvent("onBeforeViewChange", resetConfig);
 scheduler.attachEvent("onSchedulerResize", resetConfig);
 resetConfig();
+scheduler.load("./data");
 scheduler.init('compitition_scheduler', new Date(), "month");
-// scheduler.load("../common/events.json");
 

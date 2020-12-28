@@ -25,3 +25,7 @@ minty_homepage_controller_links:
 minty_homepage_controller_compititions:
     path: /compititions/{command}/{post_id}/{section}/{topic_id}/{forum_id}
     defaults: { _controller: minty.homepage.controller.main:handle, command:"compititions", post_id:0, section:'compititions', topic_id:0, forum_id:0 }
+
+minty_homepage_controller_data:
+    path: /data/{command}/{post_id}/{section}/{topic_id}/{forum_id}
+    defaults: { _controller: minty.homepage.controller.main:handle, command:"data", post_id:0, section:'data', topic_id:0, forum_id:0 }

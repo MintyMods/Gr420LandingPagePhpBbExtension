@@ -9,9 +9,12 @@
  */
 
 namespace minty\homepage\controller;
+use PDO;
+use SchedulerConnector;
 
 class main_controller {
 
+	protected $request;
 	protected $config;
 	protected $helper;
 	protected $template;
@@ -19,19 +22,23 @@ class main_controller {
 	protected $db;
 	protected $log;
 	protected $table_name = "";
+	protected $comp_table_name = "phpbb_minty_competition_events"; // @todo
 	protected $php_ext;
 	protected $phpbb_root_path;
 
-	public function __construct(\phpbb\config\config $config, 
-								\phpbb\controller\helper $helper, 
-								\phpbb\template\template $template, 
-								\phpbb\language\language $language,
-								\phpbb\db\driver\factory $dbal,
-								\phpbb\log\log $log,
-								$table_name,
-								$phpbb_root_path, 
-								$phpEx
+	public function __construct(
+			\phpbb\request\request $request, 
+			\phpbb\config\config $config, 
+			\phpbb\controller\helper $helper, 
+			\phpbb\template\template $template, 
+			\phpbb\language\language $language,
+			\phpbb\db\driver\factory $dbal,
+			\phpbb\log\log $log,
+			$table_name,
+			$phpbb_root_path, 
+			$phpEx
 								) {
+		$this->request = $request;									
 		$this->config	= $config;
 		$this->helper	= $helper;
 		$this->template	= $template;
@@ -69,9 +76,13 @@ class main_controller {
 			case 'links' :
 				$this->selectPostForSection($post_id, $section, $topic_id, $forum_id);
 				return $this->helper->render('@minty_homepage/links.html', $result);
+			case 'data' :
+				$json_response = new \phpbb\json_response();
+				return $json_response->send($this->getData());
+				// return $this->getData();
 			case 'compititions' :
 				$this->selectPostForSection($post_id, $section, $topic_id, $forum_id);
-				return $this->helper->render('@minty_homepage/comps.html', $result);
+				return $this->helper->render('@minty_homepage/compititions.html', $result);
 			case 'reviews' :
 				$this->selectPostForSection($post_id, $section, $topic_id, $forum_id);
 				return $this->helper->render('@minty_homepage/reviews.html', $result);
@@ -81,6 +92,20 @@ class main_controller {
 		}
 	}
 	
+	function getData() {
+		require("./config.php"); 
+		require("dhtmlx/scheduler_connector.php");
+		$this->request->enable_super_globals();
+		
+		// var_dump($this->request); 
+		// echo "Hello world!";
+		$res = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpasswd);
+		$connector = new SchedulerConnector($res);
+		$connector->enable_log($this->log_file);
+		$connector->render_table($this->comp_table_name,"id","start_date,end_date,text,sponsor,status");
+	}
+
+
 	public function deleteRecord($post_id) {
 		$sql = 'DELETE FROM ' . $this->table_name . ' WHERE post_id = ' . $post_id;
 		return $this->db->sql_query($sql);

@@ -5,6 +5,7 @@ services:
     minty.homepage.controller.main:
         class: minty\homepage\controller\main_controller
         arguments:
+            - '@request'
             - '@config'
             - '@controller.helper'
             - '@template'
